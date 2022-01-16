@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://common/pets/Pet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://common/gfx/ui/border.png" type="Texture" id=2]
+[ext_resource path="res://common/gfx/ui/shaders/border-babyblue.tres" type="Shader" id=3]
+[ext_resource path="res://common/items/bootle.png" type="Texture" id=4]
+[ext_resource path="res://common/gfx/ui/actions/toliet.png" type="Texture" id=5]
+[ext_resource path="res://src/FoodButton.gd" type="Script" id=6]
+[ext_resource path="res://src/BathroomButton.gd" type="Script" id=7]
+[ext_resource path="res://src/Game.gd" type="Script" id=8]
+[ext_resource path="res://common/items/ball.png" type="Texture" id=9]
+[ext_resource path="res://common/items/shot.png" type="Texture" id=10]
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 3 )
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="Pet" parent="." instance=ExtResource( 1 )]
+position = Vector2( 197, 200 )
+scale = Vector2( 4, 4 )
+
+[node name="UI" type="Control" parent="."]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Border" type="Sprite" parent="UI"]
+self_modulate = Color( 0.678431, 0.290196, 0.290196, 1 )
+material = SubResource( 3 )
+position = Vector2( 200, 198 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="FoodButton" type="TextureButton" parent="UI"]
+margin_left = 59.0
+margin_top = 61.0
+margin_right = 99.0
+margin_bottom = 101.0
+texture_normal = ExtResource( 4 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BathroomButton" type="TextureButton" parent="UI"]
+margin_left = 61.0
+margin_top = 309.0
+margin_right = 101.0
+margin_bottom = 349.0
+texture_normal = ExtResource( 5 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayButton" type="TextureButton" parent="UI"]
+margin_left = 331.0
+margin_top = 316.0
+margin_right = 371.0
+margin_bottom = 356.0
+texture_normal = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MedicineButton" type="TextureButton" parent="UI"]
+margin_left = 331.0
+margin_top = 62.0
+margin_right = 371.0
+margin_bottom = 102.0
+texture_normal = ExtResource( 10 )
+
+[connection signal="pressed" from="UI/FoodButton" to="." method="_on_FoodButton_pressed"]
+[connection signal="pressed" from="UI/BathroomButton" to="." method="_on_BathroomButton_pressed"]
+[connection signal="pressed" from="UI/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="UI/MedicineButton" to="." method="_on_MedicineButton_pressed"]
