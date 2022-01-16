@@ -1,0 +1,48 @@
+[gd_resource type="VisualShader" load_steps=3 format=2]
+
+[sub_resource type="VisualShaderNodeInput" id=4]
+output_port_for_preview = 0
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeVectorCompose" id=5]
+output_port_for_preview = 0
+default_input_values = [ 0, 0.0, 1, 255.0, 2, 0.0 ]
+
+[resource]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx;
+
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Input:2
+	vec3 n_out2p0 = COLOR.rgb;
+
+// VectorCompose:4
+	float n_in4p1 = 255.00000;
+	float n_in4p2 = 0.00000;
+	vec3 n_out4p0 = vec3(dot(n_out2p0, vec3(0.333333, 0.333333, 0.333333)), n_in4p1, n_in4p2);
+
+// Output:0
+	ALBEDO = n_out4p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( 0, 33.5635 )
+nodes/fragment/0/position = Vector2( 400, 160 )
+nodes/fragment/2/node = SubResource( 4 )
+nodes/fragment/2/position = Vector2( 0, 80 )
+nodes/fragment/4/node = SubResource( 5 )
+nodes/fragment/4/position = Vector2( 180, 100 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 4, 0, 4, 0, 0, 0 )
