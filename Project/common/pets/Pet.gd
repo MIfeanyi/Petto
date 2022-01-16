@@ -27,8 +27,10 @@ func eat_event():
 			$Sprites/FoodSprite.set_animation("bottle")
 			pass
 		LIFE_STAGES.KID:
+			$Sprites/FoodSprite.set_animation("pizza")
 			pass
 		LIFE_STAGES.ADULT:
+			$Sprites/FoodSprite.set_animation("beer")
 			pass
 	play_animation($Sprites/FoodSprite,"Food")
 	health+=1
@@ -135,5 +137,9 @@ func _on_HealthTimer_timeout():
 		$Sprites/EmoteSprite.play("death")
 	if health <= 0:
 		$Sprites/PetSprite.play("death")
-	if health > 20:
+	if health > 30:
+		$Sprites/EmoteSprite.play("help")
+	if health > 5 and health < 20:
+		$Sprites/EmoteSprite.play("idle")
+	if hunger > 20:
 		health-=2 #overweight
