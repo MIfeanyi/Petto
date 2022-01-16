@@ -112,11 +112,12 @@ func _on_GrowthTimer_timeout():
 				pass
 			LIFE_STAGES.ADULT:
 				return #TODO: Add death?
-	pass # Replace with function body.
+	$SFX/GrowAudio.play()
 
 
 func _on_BathroomTimer_timeout():
 	$Sprites/BathroomSprite.play("poop")
+	$SFX/BathroomAudio.play()
 	health-=1
 	pass # Replace with function body.
 
@@ -130,14 +131,17 @@ func _on_HungerTimer_timeout():
 
 func _on_SickTimer_timeout():
 	health -= 2
+	$SFX/HitAudio.play()
 	pass # Replace with function body.
 
 
 func _on_HealthTimer_timeout():
 	if health < 3:
 		$Sprites/EmoteSprite.play("death")
+		$SFX/HitAudio.play()
 	if health <= 0:
 		$Sprites/PetSprite.play("death")
+		$SFX/DeathAudio.play()
 	if health > 30:
 		$Sprites/EmoteSprite.play("help")
 	if health > 5 and health < 20:
