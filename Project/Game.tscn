@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://common/pets/Pet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://common/gfx/ui/border.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://src/Game.gd" type="Script" id=8]
 [ext_resource path="res://common/items/ball.png" type="Texture" id=9]
 [ext_resource path="res://common/items/shot.png" type="Texture" id=10]
+[ext_resource path="res://common/sfx/music/loop.wav" type="AudioStream" id=11]
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 3 )
@@ -73,6 +74,10 @@ margin_top = 62.0
 margin_right = 371.0
 margin_bottom = 102.0
 texture_normal = ExtResource( 10 )
+
+[node name="GameAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+autoplay = true
 
 [connection signal="pressed" from="UI/FoodButton" to="." method="_on_FoodButton_pressed"]
 [connection signal="pressed" from="UI/BathroomButton" to="." method="_on_BathroomButton_pressed"]
