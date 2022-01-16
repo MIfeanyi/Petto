@@ -40,3 +40,14 @@ func _on_MedicineButton_pressed():
 func _on_BathroomButton_pressed():
 	emit_signal("bathroom")
 	pass # Replace with function body.
+
+
+func _on_MuteButton_pressed():
+	$GameAudio.stop()
+	$UI/MuteButton.visible = false
+	$UI/MusicButton.visible = true
+
+func _on_MusicButton_pressed():
+	$GameAudio.play()
+	$UI/MuteButton.visible = true
+	$UI/MusicButton.visible = false

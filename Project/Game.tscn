@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://common/pets/Pet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://common/gfx/ui/border.png" type="Texture" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://common/items/ball.png" type="Texture" id=9]
 [ext_resource path="res://common/items/shot.png" type="Texture" id=10]
 [ext_resource path="res://common/sfx/music/loop.wav" type="AudioStream" id=11]
+[ext_resource path="res://common/gfx/text_logo_wht.png" type="Texture" id=12]
+[ext_resource path="res://common/gfx/ui/mute1.png" type="Texture" id=13]
+[ext_resource path="res://common/gfx/ui/mute2.png" type="Texture" id=14]
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 3 )
@@ -37,43 +40,69 @@ __meta__ = {
 }
 
 [node name="FoodButton" type="TextureButton" parent="UI"]
+modulate = Color( 0.363211, 0.228425, 0.228425, 1 )
 margin_left = 59.0
 margin_top = 61.0
 margin_right = 99.0
 margin_bottom = 101.0
 texture_normal = ExtResource( 4 )
+expand = true
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BathroomButton" type="TextureButton" parent="UI"]
-margin_left = 61.0
-margin_top = 309.0
-margin_right = 101.0
-margin_bottom = 349.0
+margin_left = 57.0
+margin_top = 293.0
+margin_right = 97.0
+margin_bottom = 333.0
 texture_normal = ExtResource( 5 )
+expand = true
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PlayButton" type="TextureButton" parent="UI"]
-margin_left = 331.0
-margin_top = 316.0
-margin_right = 371.0
-margin_bottom = 356.0
+margin_left = 308.0
+margin_top = 290.0
+margin_right = 348.0
+margin_bottom = 330.0
 texture_normal = ExtResource( 9 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MedicineButton" type="TextureButton" parent="UI"]
-margin_left = 331.0
-margin_top = 62.0
-margin_right = 371.0
-margin_bottom = 102.0
+margin_left = 310.0
+margin_top = 60.0
+margin_right = 350.0
+margin_bottom = 100.0
 texture_normal = ExtResource( 10 )
+expand = true
+
+[node name="TextLogoWht" type="Sprite" parent="UI"]
+position = Vector2( 199, 26 )
+texture = ExtResource( 12 )
+
+[node name="MuteButton" type="TextureButton" parent="UI"]
+margin_left = 348.0
+margin_top = 5.0
+margin_right = 388.0
+margin_bottom = 45.0
+texture_normal = ExtResource( 13 )
+expand = true
+
+[node name="MusicButton" type="TextureButton" parent="UI"]
+visible = false
+margin_left = 348.0
+margin_top = 5.0
+margin_right = 388.0
+margin_bottom = 45.0
+texture_normal = ExtResource( 14 )
+expand = true
 
 [node name="GameAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
@@ -83,3 +112,5 @@ autoplay = true
 [connection signal="pressed" from="UI/BathroomButton" to="." method="_on_BathroomButton_pressed"]
 [connection signal="pressed" from="UI/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="UI/MedicineButton" to="." method="_on_MedicineButton_pressed"]
+[connection signal="pressed" from="UI/MuteButton" to="." method="_on_MuteButton_pressed"]
+[connection signal="pressed" from="UI/MusicButton" to="." method="_on_MusicButton_pressed"]
