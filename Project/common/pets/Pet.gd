@@ -3,7 +3,7 @@ extends Node2D
 #TODO: LOAD SPRITES VIA EXPORTED FRAMES ONREADY
 enum LIFE_STAGES {EGG, BABY, KID, ADULT, DEAD}
 
-var health = 25
+var health = 15
 var hunger = 10
 
 var current_life_stage = LIFE_STAGES.EGG
@@ -45,11 +45,13 @@ func play_event():
 			$Sprites/ActionSprite.set_animation("ball-action")
 			pass
 		LIFE_STAGES.KID:
-			$Sprites/ActionSprite.set_animation("ball-action")
+			$Sprites/ActionSprite.set_animation("game-action")
 			pass
 		LIFE_STAGES.ADULT:
+			$Sprites/ActionSprite.set_animation("game-action")
 			pass
 	play_action_animation()
+	hunger-=2
 	pass
 func medicine_event():
 	match current_life_stage:
@@ -63,12 +65,11 @@ func bathroom_event():
 	match current_life_stage:
 		LIFE_STAGES.EGG:
 			return #eggs don't play!
-			pass
 		_:
 			play_animation($Sprites/PetSprite,"Bathroom")
 			pass
 	pass
-func disipline_event():
+func disipline_event(): #TODO
 	match current_life_stage:
 		LIFE_STAGES.EGG:
 			return #eggs don't play!

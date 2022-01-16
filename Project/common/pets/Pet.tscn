@@ -271,7 +271,7 @@ offset = Vector2( -32, 0 )
 [node name="FoodSprite" type="AnimatedSprite" parent="Sprites"]
 position = Vector2( -64, 0 )
 frames = SubResource( 9 )
-animation = "beer"
+animation = "idle"
 offset = Vector2( 64, 0 )
 
 [node name="BathroomSprite" type="AnimatedSprite" parent="Sprites"]
@@ -281,7 +281,7 @@ offset = Vector2( 0, 32 )
 [node name="Timers" type="Node" parent="."]
 
 [node name="GrowthTimer" type="Timer" parent="Timers"]
-wait_time = 240.0
+wait_time = 30.0
 autostart = true
 
 [node name="BathroomTimer" type="Timer" parent="Timers"]
