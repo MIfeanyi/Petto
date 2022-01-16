@@ -41,6 +41,7 @@ func play_event():
 			$Sprites/ActionSprite.set_animation("ball-action")
 			pass
 		LIFE_STAGES.KID:
+			$Sprites/ActionSprite.set_animation("ball-action")
 			pass
 		LIFE_STAGES.ADULT:
 			pass
@@ -59,11 +60,8 @@ func bathroom_event():
 		LIFE_STAGES.EGG:
 			return #eggs don't play!
 			pass
-		LIFE_STAGES.BABY:
-			pass
-		LIFE_STAGES.KID:
-			pass
-		LIFE_STAGES.ADULT:
+		_:
+			play_animation($Sprites/PetSprite,"Bathroom")
 			pass
 	pass
 func disipline_event():
@@ -86,7 +84,7 @@ func disipline_event():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	$Sprites/FoodSprite.visible = false
 	$Sprites/ActionSprite.visible = false
-	pass # Replace with function body.
+	print(anim_name, " finished")
 
 
 func _on_GrowthTimer_timeout():
@@ -97,11 +95,15 @@ func _on_GrowthTimer_timeout():
 				$Sprites/PetSprite.play("baby_idle")
 				return
 			LIFE_STAGES.BABY:
-				pass
+				$Sprites/PetSprite.play("kid_idle")
+				current_life_stage = LIFE_STAGES.KID
+				return
 			LIFE_STAGES.KID:
+				$Sprites/PetSprite.play("adult_idle")
+				current_life_stage = LIFE_STAGES.ADULT
 				pass
 			LIFE_STAGES.ADULT:
-				pass
+				return #TODO: Add death?
 	pass # Replace with function body.
 
 

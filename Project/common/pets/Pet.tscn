@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://common/pets/Pet.gd" type="Script" id=1]
 [ext_resource path="res://common/pets/00/00_egg_idle.png" type="Texture" id=2]
@@ -10,6 +10,38 @@
 [ext_resource path="res://common/items/ball.png" type="Texture" id=8]
 [ext_resource path="res://common/items/shot.png" type="Texture" id=9]
 [ext_resource path="res://common/items/bootle.png" type="Texture" id=10]
+[ext_resource path="res://common/pets/00/00_boy_idle.png" type="Texture" id=11]
+[ext_resource path="res://common/pets/00/00_adult_idle.png" type="Texture" id=12]
+[ext_resource path="res://common/items/game_game.png" type="Texture" id=13]
+[ext_resource path="res://common/items/beer.png" type="Texture" id=14]
+
+[sub_resource type="Animation" id=11]
+resource_name = "Bathroom"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -200, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/PetSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -200, 0 ), Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=10]
 resource_name = "Food"
@@ -43,6 +75,14 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 32, 0 ), Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 12 )
+region = Rect2( 32, 0, 32, 32 )
+
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 16, 16 )
@@ -59,8 +99,21 @@ region = Rect2( 0, 0, 16, 16 )
 atlas = ExtResource( 3 )
 region = Rect2( 16, 0, 16, 16 )
 
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 11 )
+region = Rect2( 16, 0, 16, 16 )
+
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
+"frames": [ SubResource( 14 ), SubResource( 15 ) ],
+"loop": true,
+"name": "adult_idle",
+"speed": 1.0
+}, {
 "frames": [ SubResource( 1 ), SubResource( 2 ) ],
 "loop": true,
 "name": "egg_idle",
@@ -69,6 +122,11 @@ animations = [ {
 "frames": [ SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "baby_idle",
+"speed": 1.0
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "kid_idle",
 "speed": 1.0
 } ]
 
@@ -112,6 +170,16 @@ animations = [ {
 "name": "pizza-action",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "beer-action",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "game-action",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
 "name": "bottle-action",
@@ -145,6 +213,7 @@ animations = [ {
 script = ExtResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Bathroom = SubResource( 11 )
 anims/Food = SubResource( 10 )
 "anims/Play Animation" = SubResource( 8 )
 
@@ -163,6 +232,7 @@ animation = "idle"
 
 [node name="ActionSprite" type="AnimatedSprite" parent="Sprites"]
 frames = SubResource( 7 )
+animation = "beer-action"
 offset = Vector2( -32, 0 )
 
 [node name="FoodSprite" type="AnimatedSprite" parent="Sprites"]
