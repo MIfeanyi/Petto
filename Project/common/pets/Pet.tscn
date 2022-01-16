@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://common/pets/Pet.gd" type="Script" id=1]
 [ext_resource path="res://common/pets/00/00_egg_idle.png" type="Texture" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://common/pets/00/00_adult_idle.png" type="Texture" id=12]
 [ext_resource path="res://common/items/game_game.png" type="Texture" id=13]
 [ext_resource path="res://common/items/beer.png" type="Texture" id=14]
+[ext_resource path="res://common/gfx/emotes/poop.png" type="Texture" id=15]
+[ext_resource path="res://common/pets/00/00_dead.png" type="Texture" id=16]
 
 [sub_resource type="Animation" id=11]
 resource_name = "Bathroom"
@@ -99,6 +101,14 @@ region = Rect2( 0, 0, 16, 16 )
 atlas = ExtResource( 3 )
 region = Rect2( 16, 0, 16, 16 )
 
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 16 )
+region = Rect2( 16, 0, 16, 16 )
+
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 11 )
 region = Rect2( 0, 0, 16, 16 )
@@ -122,6 +132,11 @@ animations = [ {
 "frames": [ SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "baby_idle",
+"speed": 1.0
+}, {
+"frames": [ SubResource( 17 ), SubResource( 18 ) ],
+"loop": true,
+"name": "death",
 "speed": 1.0
 }, {
 "frames": [ SubResource( 12 ), SubResource( 13 ) ],
@@ -209,6 +224,19 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="SpriteFrames" id=16]
+animations = [ {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "poop",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="Pet" type="Sprite" groups=["pet"]]
 script = ExtResource( 1 )
 
@@ -232,7 +260,6 @@ animation = "idle"
 
 [node name="ActionSprite" type="AnimatedSprite" parent="Sprites"]
 frames = SubResource( 7 )
-animation = "beer-action"
 offset = Vector2( -32, 0 )
 
 [node name="FoodSprite" type="AnimatedSprite" parent="Sprites"]
@@ -241,20 +268,29 @@ frames = SubResource( 9 )
 animation = "idle"
 offset = Vector2( 64, 0 )
 
+[node name="BathroomSprite" type="AnimatedSprite" parent="Sprites"]
+frames = SubResource( 16 )
+offset = Vector2( 0, 32 )
+
 [node name="Timers" type="Node" parent="."]
 
 [node name="GrowthTimer" type="Timer" parent="Timers"]
-wait_time = 10.0
+wait_time = 240.0
 autostart = true
 
 [node name="BathroomTimer" type="Timer" parent="Timers"]
-wait_time = 60.0
+wait_time = 120.0
 autostart = true
 
 [node name="HungerTimer" type="Timer" parent="Timers"]
+wait_time = 60.0
 
 [node name="SickTimer" type="Timer" parent="Timers"]
-wait_time = 220.0
+wait_time = 480.0
+autostart = true
+
+[node name="HealthTimer" type="Timer" parent="Timers"]
+wait_time = 5.0
 autostart = true
 
 [node name="SFX" type="Node" parent="."]
@@ -264,3 +300,4 @@ autostart = true
 [connection signal="timeout" from="Timers/BathroomTimer" to="." method="_on_BathroomTimer_timeout"]
 [connection signal="timeout" from="Timers/HungerTimer" to="." method="_on_HungerTimer_timeout"]
 [connection signal="timeout" from="Timers/SickTimer" to="." method="_on_SickTimer_timeout"]
+[connection signal="timeout" from="Timers/HealthTimer" to="." method="_on_HealthTimer_timeout"]

@@ -1,10 +1,10 @@
 extends Node2D
 
 #TODO: LOAD SPRITES VIA EXPORTED FRAMES ONREADY
-enum LIFE_STAGES {EGG, BABY, KID, ADULT}
+enum LIFE_STAGES {EGG, BABY, KID, ADULT, DEAD}
 
-var health = 5
-var hunger = 5
+var health = 25
+var hunger = 10
 
 var current_life_stage = LIFE_STAGES.EGG
 # Called when the node enters the scene tree for the first time.
@@ -31,6 +31,8 @@ func eat_event():
 		LIFE_STAGES.ADULT:
 			pass
 	play_animation($Sprites/FoodSprite,"Food")
+	health+=1
+	hunger+=5
 
 func play_event():
 	match current_life_stage:
@@ -84,7 +86,10 @@ func disipline_event():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	$Sprites/FoodSprite.visible = false
 	$Sprites/ActionSprite.visible = false
+	health+=1
 	print(anim_name, " finished")
+	if anim_name == "Bathroom":
+		$Sprites/BathroomSprite.play("default")
 
 
 func _on_GrowthTimer_timeout():
@@ -108,15 +113,27 @@ func _on_GrowthTimer_timeout():
 
 
 func _on_BathroomTimer_timeout():
-	#shit
+	$Sprites/BathroomSprite.play("poop")
+	health-=1
 	pass # Replace with function body.
 
 
 func _on_HungerTimer_timeout():
 	hunger-=1
+	if hunger <0:
+		health-=hunger
 	pass # Replace with function body.
 
 
 func _on_SickTimer_timeout():
 	health -= 2
 	pass # Replace with function body.
+
+
+func _on_HealthTimer_timeout():
+	if health < 3:
+		$Sprites/EmoteSprite.play("death")
+	if health <= 0:
+		$Sprites/PetSprite.play("death")
+	if health > 20:
+		health-=2 #overweight
