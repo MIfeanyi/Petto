@@ -19,8 +19,7 @@ First, fork the repository. Make sure you are using Godot 3.2
 LMB - ACTION
 
 
-  <iframe frameborder="0" src="https://itch.io/embed-upload/5089568?color=333333" allowfullscreen="" width="400" height="420"><a href="https://mifeanyi.itch.io/petto">Play Petto on itch.io</a></iframe>
-
+[Itchio](https://mifeanyi.itch.io/petto)
 
   ## Release Notes
 
