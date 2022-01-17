@@ -116,6 +116,7 @@ expand = true
 
 [node name="GameAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
+volume_db = -20.975
 autoplay = true
 
 [connection signal="pressed" from="UI/FoodButton" to="." method="_on_FoodButton_pressed"]

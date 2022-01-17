@@ -109,10 +109,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 4 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ false, true ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -386,7 +386,6 @@ frames = SubResource( 7 )
 offset = Vector2( -32, 0 )
 
 [node name="FoodSprite" type="AnimatedSprite" parent="Sprites"]
-position = Vector2( -43.2, 0 )
 frames = SubResource( 9 )
 animation = "idle"
 offset = Vector2( 64, 0 )
@@ -398,11 +397,11 @@ offset = Vector2( 0, 32 )
 [node name="Timers" type="Node" parent="."]
 
 [node name="GrowthTimer" type="Timer" parent="Timers"]
-wait_time = 30.0
+wait_time = 90.0
 autostart = true
 
 [node name="BathroomTimer" type="Timer" parent="Timers"]
-wait_time = 120.0
+wait_time = 960.0
 autostart = true
 
 [node name="HungerTimer" type="Timer" parent="Timers"]
