@@ -142,6 +142,7 @@ func _on_HealthTimer_timeout():
 	if health <= 0:
 		$Sprites/PetSprite.play("death")
 		$SFX/DeathAudio.play()
+		current_life_stage = LIFE_STAGES.DEAD
 	if health > 30:
 		$Sprites/EmoteSprite.play("help")
 	if health > 5 and health < 20:
