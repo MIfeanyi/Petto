@@ -12,12 +12,9 @@ First, fork the repository. Make sure you are using Godot 3.2
   - [ ] Context-menu / Actions
   - [ ] Health and stats
 
-  - Play
+ ## Play
 
-  ## Controls
-
-LMB - ACTION
-
+Controls: LMB - ACTION
 
 [Itchio](https://mifeanyi.itch.io/petto)
 
