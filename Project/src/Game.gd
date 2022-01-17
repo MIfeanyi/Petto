@@ -7,11 +7,12 @@ signal medicine;
 signal disipline;
 
 func _ready():
-	$Pet.connect("eat",self,"eat_event")
-	$Pet.connect("bathroom",self,"bathroom_event")
-	$Pet.connect("play",self,"play_event")
-	$Pet.connect("medicine",self,"medicine_event")
-	$Pet.connect("disipline",self,"disipline_event")
+	for node in get_tree().get_nodes_in_group("pet"):
+		connect("eat",node,"eat_event")
+		connect("bathroom",node,"bathroom_event")
+		connect("play",node,"play_event")
+		connect("medicine",node,"medicine_event")
+		connect("disipline",node,"disipline_event")
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	$UI/Border.set_self_modulate(Color(rng.randf_range(0,1),rng.randf_range(0,1),rng.randf_range(0,1)))
