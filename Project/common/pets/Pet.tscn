@@ -264,9 +264,9 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ ExtResource( 6 ) ],
 "loop": true,
-"name": "death",
+"name": "help",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ) ],
@@ -274,9 +274,9 @@ animations = [ {
 "name": "love",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "help",
+"name": "death",
 "speed": 5.0
 }, {
 "frames": [  ],
@@ -325,11 +325,6 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "bottle",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 14 ) ],
 "loop": true,
 "name": "beer",
@@ -338,6 +333,11 @@ animations = [ {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "pizza",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "bottle",
 "speed": 5.0
 }, {
 "frames": [  ],
@@ -373,6 +373,7 @@ anims/RESET = SubResource( 19 )
 [node name="PetSprite" type="AnimatedSprite" parent="Sprites"]
 frames = SubResource( 3 )
 animation = "egg_idle"
+frame = 1
 playing = true
 
 [node name="EmoteSprite" type="AnimatedSprite" parent="Sprites"]
@@ -397,22 +398,22 @@ offset = Vector2( 0, 32 )
 [node name="Timers" type="Node" parent="."]
 
 [node name="GrowthTimer" type="Timer" parent="Timers"]
-wait_time = 90.0
+wait_time = 15.0
 autostart = true
 
 [node name="BathroomTimer" type="Timer" parent="Timers"]
-wait_time = 960.0
+wait_time = 60.0
 autostart = true
 
 [node name="HungerTimer" type="Timer" parent="Timers"]
-wait_time = 60.0
+wait_time = 90.0
 
 [node name="SickTimer" type="Timer" parent="Timers"]
 wait_time = 480.0
 autostart = true
 
 [node name="HealthTimer" type="Timer" parent="Timers"]
-wait_time = 5.0
+wait_time = 15.0
 autostart = true
 
 [node name="SFX" type="Node" parent="."]

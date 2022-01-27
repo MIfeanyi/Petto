@@ -2,7 +2,7 @@ extends Node2D
 
 #TODO: LOAD SPRITES VIA EXPORTED FRAMES ONREADY
 enum LIFE_STAGES {EGG, BABY, KID, ADULT, DEAD}
-
+export (int) var GROWTH_MULTIPLIER = 10
 var health = 15
 var hunger = 10
 
@@ -96,6 +96,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _on_GrowthTimer_timeout():
+	$Timers/GrowthTimer.wait_time*=GROWTH_MULTIPLIER
 	if current_life_stage !=  LIFE_STAGES.ADULT:
 		match current_life_stage:
 			LIFE_STAGES.EGG:
@@ -112,7 +113,7 @@ func _on_GrowthTimer_timeout():
 				pass
 			LIFE_STAGES.ADULT:
 				return #TODO: Add death?
-	$SFX/GrowAudio.play()
+		$SFX/GrowAudio.play()
 
 
 func _on_BathroomTimer_timeout():
